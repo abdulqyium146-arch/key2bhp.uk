@@ -1,0 +1,140 @@
+import Link from "next/link";
+import { Phone, MapPin, Clock, ChevronRight } from "lucide-react";
+import { BUSINESS } from "@/lib/utils";
+import { services } from "@/lib/data/services";
+import { locations } from "@/lib/data/locations";
+
+export default function Footer() {
+  const year = new Date().getFullYear();
+  const topServices = services.slice(0, 6);
+  const topLocations = locations.slice(0, 6);
+
+  return (
+    <footer className="bg-surface border-t border-border">
+      {/* Main footer grid */}
+      <div className="container py-16">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Brand column */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent">
+                <span className="text-lg font-black text-black">K2</span>
+              </div>
+              <div>
+                <p className="text-sm font-bold leading-none text-foreground">Key 2 BHP</p>
+                <p className="text-xs text-foreground-muted leading-none mt-0.5">Auto Locksmith</p>
+              </div>
+            </div>
+            <p className="text-sm text-foreground-muted mb-6 leading-relaxed">
+              24/7 mobile auto locksmith serving Manchester and Greater Manchester. Car key replacement, emergency lockout, and key programming.
+            </p>
+            {/* NAP */}
+            <address className="not-italic space-y-3 text-sm">
+              <div className="flex items-start gap-2 text-foreground-muted">
+                <MapPin className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+                <span>{BUSINESS.address.full}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-accent shrink-0" />
+                <a
+                  href={`tel:${BUSINESS.phone}`}
+                  className="text-foreground hover:text-accent transition-colors font-medium"
+                >
+                  {BUSINESS.phoneDisplay}
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-foreground-muted">
+                <Clock className="h-4 w-4 text-accent shrink-0" />
+                <span>24/7 — 365 days a year</span>
+              </div>
+            </address>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="font-semibold text-foreground mb-4">Our Services</h3>
+            <ul className="space-y-2">
+              {topServices.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="flex items-center gap-1.5 text-sm text-foreground-muted hover:text-accent transition-colors group"
+                  >
+                    <ChevronRight className="h-3 w-3 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Locations */}
+          <div>
+            <h3 className="font-semibold text-foreground mb-4">Areas We Cover</h3>
+            <ul className="space-y-2">
+              {topLocations.map((loc) => (
+                <li key={loc.slug}>
+                  <Link
+                    href={`/locations/${loc.slug}`}
+                    className="flex items-center gap-1.5 text-sm text-foreground-muted hover:text-accent transition-colors group"
+                  >
+                    <ChevronRight className="h-3 w-3 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {loc.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Quick links */}
+          <div>
+            <h3 className="font-semibold text-foreground mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              {[
+                { href: "/", label: "Home" },
+                { href: "/services", label: "All Services" },
+                { href: "/locations", label: "All Locations" },
+                { href: "/blog", label: "Blog & Advice" },
+                { href: "/contact", label: "Contact Us" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="flex items-center gap-1.5 text-sm text-foreground-muted hover:text-accent transition-colors group"
+                  >
+                    <ChevronRight className="h-3 w-3 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 p-4 bg-surface-2 rounded-lg border border-border">
+              <p className="text-xs text-foreground-muted mb-2">Locked out? Call now:</p>
+              <a
+                href={`tel:${BUSINESS.phone}`}
+                className="text-lg font-bold text-accent hover:text-accent-hover transition-colors"
+              >
+                {BUSINESS.phoneDisplay}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-border">
+        <div className="container flex flex-col sm:flex-row items-center justify-between gap-3 py-5">
+          <p className="text-xs text-foreground-muted">
+            &copy; {year} {BUSINESS.name}. All rights reserved.
+          </p>
+          <p className="text-xs text-foreground-muted">
+            Mobile auto locksmith based in{" "}
+            <Link href="/locations/denton" className="text-accent hover:underline">
+              Denton, Manchester
+            </Link>
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
