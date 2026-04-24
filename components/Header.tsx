@@ -43,6 +43,12 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
+          <Link
+            href="/"
+            className="text-sm font-medium text-foreground-muted hover:text-accent transition-colors"
+          >
+            Home
+          </Link>
           <NavDropdown
             label="Services"
             items={serviceDropdownItems}
@@ -108,6 +114,7 @@ export default function Header() {
       {mobileOpen && (
         <div className="md:hidden border-t border-border bg-surface">
           <nav className="container flex flex-col py-3 gap-0" aria-label="Mobile navigation">
+            <Link href="/" onClick={() => setMobileOpen(false)} className="py-3 px-2 text-sm font-medium text-foreground-muted hover:text-accent border-b border-border">Home</Link>
             {/* Services accordion */}
             <button
               onClick={() => setMobileServicesOpen((v) => !v)}
