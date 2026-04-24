@@ -2,25 +2,36 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronRight } from "lucide-react";
 import { BUSINESS } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import NavDropdown from "@/components/NavDropdown";
+import { services } from "@/lib/data/services";
+import { locations } from "@/lib/data/locations";
 
-const navLinks = [
-  { href: "/services", label: "Services" },
-  { href: "/locations", label: "Areas We Cover" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
+const serviceDropdownItems = services.map((s) => ({
+  label: s.name,
+  href: `/services/${s.slug}`,
+  description: s.tagline,
+  icon: s.icon,
+}));
+
+const locationDropdownItems = locations.map((l) => ({
+  label: l.name,
+  href: `/locations/${l.slug}`,
+  description: l.county,
+}));
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group" aria-label="Key 2 BHP Home">
+        <Link href="/" className="flex items-center gap-2 group shrink-0" aria-label="Key 2 BHP Home">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent">
             <span className="text-lg font-black text-black">K2</span>
           </div>
@@ -32,15 +43,30 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-foreground-muted hover:text-accent transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
+          <NavDropdown
+            label="Services"
+            items={serviceDropdownItems}
+            viewAllHref="/services"
+            viewAllLabel="All Services"
+          />
+          <NavDropdown
+            label="Areas We Cover"
+            items={locationDropdownItems}
+            viewAllHref="/locations"
+            viewAllLabel="All Locations"
+          />
+          <Link
+            href="/blog"
+            className="text-sm font-medium text-foreground-muted hover:text-accent transition-colors"
+          >
+            Blog
+          </Link>
+          <Link
+            href="/contact"
+            className="text-sm font-medium text-foreground-muted hover:text-accent transition-colors"
+          >
+            Contact
+          </Link>
         </nav>
 
         {/* Desktop CTA */}
@@ -59,7 +85,7 @@ export default function Header() {
           </Button>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile: phone + hamburger */}
         <div className="flex md:hidden items-center gap-3">
           <a
             href={`tel:${BUSINESS.phone}`}
@@ -67,7 +93,6 @@ export default function Header() {
             aria-label="Call us"
           >
             <Phone className="h-4 w-4" />
-            <span className="hidden xs:inline">{BUSINESS.phoneDisplay}</span>
           </a>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -79,28 +104,82 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Nav Dropdown */}
+      {/* Mobile Nav */}
       {mobileOpen && (
         <div className="md:hidden border-t border-border bg-surface">
-          <nav className="container flex flex-col py-4 gap-1" aria-label="Mobile navigation">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="py-3 px-2 text-sm font-medium text-foreground-muted hover:text-accent transition-colors border-b border-border last:border-0"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="pt-4 flex flex-col gap-2">
+          <nav className="container flex flex-col py-3 gap-0" aria-label="Mobile navigation">
+            {/* Services accordion */}
+            <button
+              onClick={() => setMobileServicesOpen((v) => !v)}
+              className="flex items-center justify-between py-3 px-2 text-sm font-medium text-foreground-muted hover:text-accent border-b border-border"
+            >
+              <span>Services</span>
+              <ChevronRight className={`h-4 w-4 transition-transform ${mobileServicesOpen ? "rotate-90" : ""}`} />
+            </button>
+            {mobileServicesOpen && (
+              <div className="bg-surface-2 border-b border-border">
+                {services.map((s) => (
+                  <Link
+                    key={s.slug}
+                    href={`/services/${s.slug}`}
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center gap-2 py-2.5 px-6 text-sm text-foreground-muted hover:text-accent"
+                  >
+                    <span className="text-base">{s.icon}</span>
+                    {s.name}
+                  </Link>
+                ))}
+                <Link
+                  href="/services"
+                  onClick={() => setMobileOpen(false)}
+                  className="block py-2.5 px-6 text-xs font-semibold text-accent"
+                >
+                  → View all services
+                </Link>
+              </div>
+            )}
+
+            {/* Locations accordion */}
+            <button
+              onClick={() => setMobileLocationsOpen((v) => !v)}
+              className="flex items-center justify-between py-3 px-2 text-sm font-medium text-foreground-muted hover:text-accent border-b border-border"
+            >
+              <span>Areas We Cover</span>
+              <ChevronRight className={`h-4 w-4 transition-transform ${mobileLocationsOpen ? "rotate-90" : ""}`} />
+            </button>
+            {mobileLocationsOpen && (
+              <div className="bg-surface-2 border-b border-border">
+                {locations.map((l) => (
+                  <Link
+                    key={l.slug}
+                    href={`/locations/${l.slug}`}
+                    onClick={() => setMobileOpen(false)}
+                    className="block py-2.5 px-6 text-sm text-foreground-muted hover:text-accent"
+                  >
+                    {l.name}
+                  </Link>
+                ))}
+                <Link
+                  href="/locations"
+                  onClick={() => setMobileOpen(false)}
+                  className="block py-2.5 px-6 text-xs font-semibold text-accent"
+                >
+                  → View all locations
+                </Link>
+              </div>
+            )}
+
+            <Link href="/blog" onClick={() => setMobileOpen(false)} className="py-3 px-2 text-sm font-medium text-foreground-muted hover:text-accent border-b border-border">Blog</Link>
+            <Link href="/contact" onClick={() => setMobileOpen(false)} className="py-3 px-2 text-sm font-medium text-foreground-muted hover:text-accent border-b border-border">Contact</Link>
+
+            <div className="pt-4 pb-2 flex flex-col gap-2">
               <Button asChild size="lg" className="w-full">
                 <a href={`tel:${BUSINESS.phone}`}>
                   <Phone className="h-4 w-4 mr-2" />
                   Call {BUSINESS.phoneDisplay}
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="w-full">
+              <Button asChild size="lg" variant="outline" className="w-full border-green-600 text-green-400 hover:bg-green-950">
                 <a href={BUSINESS.whatsappUrl} target="_blank" rel="noopener noreferrer">
                   WhatsApp Us
                 </a>
