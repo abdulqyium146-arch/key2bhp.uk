@@ -11,6 +11,7 @@ import AreasSection from "@/components/AreasSection";
 import { Button } from "@/components/ui/button";
 import { BUSINESS } from "@/lib/utils";
 import { faqSchema } from "@/lib/seo";
+import { blogTopics } from "@/lib/data/blog-topics";
 
 export const metadata: Metadata = {
   title: "Key 2 BHP Auto Locksmith Manchester | 24/7 Mobile Car Key Specialist",
@@ -104,6 +105,38 @@ export default function HomePage() {
       <ReviewsSection />
 
       <AreasSection />
+
+      {/* Blog teasers — distributes homepage equity to content cluster */}
+      <section className="section-padding bg-surface border-y border-border">
+        <div className="container">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground">Auto Locksmith Advice</h2>
+              <p className="text-sm text-foreground-muted mt-1">Guides and tips from your Manchester locksmith</p>
+            </div>
+            <Link href="/blog" className="text-sm font-semibold text-accent hover:text-accent-hover transition-colors shrink-0">
+              All Posts →
+            </Link>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {blogTopics.slice(0, 4).map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group flex flex-col p-5 rounded-lg bg-surface-2 border border-border hover:border-accent/40 transition-all"
+              >
+                <span className="text-xs font-semibold text-accent uppercase tracking-wide mb-2">{post.category}</span>
+                <h3 className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors leading-snug line-clamp-2 mb-2">
+                  {post.title}
+                </h3>
+                <p className="text-xs text-foreground-muted line-clamp-2 leading-relaxed mt-auto">
+                  {post.excerpt}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <FAQSection
         faqs={homepageFAQs}

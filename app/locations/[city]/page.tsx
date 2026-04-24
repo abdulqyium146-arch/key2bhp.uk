@@ -158,7 +158,7 @@ export default function LocationPage({ params }: Props) {
                   {services.map((service) => (
                     <Link
                       key={service.slug}
-                      href={`/services/${service.slug}`}
+                      href={`/${location.slug}/${service.slug}`}
                       className="group flex gap-3 p-4 rounded-lg bg-surface-2 border border-border hover:border-accent/50 transition-all"
                     >
                       <span className="text-2xl shrink-0">{service.icon}</span>

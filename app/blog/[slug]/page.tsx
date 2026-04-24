@@ -215,23 +215,30 @@ export default function BlogPostPage({ params }: Props) {
               </div>
             )}
 
-            {/* Related location links */}
+            {/* Related location links — link to combo pages when a primary service is known */}
             {relatedLocationObjects.length > 0 && (
               <div className="mt-8 pt-6 border-t border-border">
                 <h3 className="font-semibold text-foreground mb-4">
                   Locksmith Services in Your Area
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {relatedLocationObjects.map((loc) => loc && (
-                    <Link
-                      key={loc.slug}
-                      href={`/locations/${loc.slug}`}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-2 border border-border text-sm text-foreground-muted hover:text-accent hover:border-accent/50 transition-all"
-                    >
-                      <ArrowRight className="h-3 w-3 text-accent" />
-                      Locksmith in {loc.name}
-                    </Link>
-                  ))}
+                  {relatedLocationObjects.map((loc) => {
+                    if (!loc) return null;
+                    const primaryService = post.relatedServices[0];
+                    const href = primaryService
+                      ? `/${loc.slug}/${primaryService}`
+                      : `/locations/${loc.slug}`;
+                    return (
+                      <Link
+                        key={loc.slug}
+                        href={href}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-2 border border-border text-sm text-foreground-muted hover:text-accent hover:border-accent/50 transition-all"
+                      >
+                        <ArrowRight className="h-3 w-3 text-accent" />
+                        Locksmith in {loc.name}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             )}

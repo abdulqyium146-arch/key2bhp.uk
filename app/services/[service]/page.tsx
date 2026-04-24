@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Phone, CheckCircle, ArrowRight } from "lucide-react";
+import { Phone, CheckCircle, ArrowRight, MapPin } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
 import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
@@ -11,8 +11,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { getService, getAllServiceSlugs, getRelatedServices, services } from "@/lib/data/services";
+import { locationAngles } from "@/lib/data/combos";
+import { locationSlugs } from "@/lib/data/topical-map";
 import { BUSINESS } from "@/lib/utils";
 import { serviceSchema, faqSchema } from "@/lib/seo";
+import type { LocationSlug } from "@/lib/data/topical-map";
 
 interface Props {
   params: { service: string };
@@ -118,7 +121,7 @@ export default function ServicePage({ params }: Props) {
       <div className="container py-14 md:py-20">
         <div className="grid gap-12 lg:grid-cols-3">
           {/* Long description */}
-          <div className="lg:col-span-2 space-y-10">
+          <div className="lg:col-span-2 space-y-12">
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-4">
                 About Our {service.name} Service in Manchester
@@ -141,6 +144,31 @@ export default function ServicePage({ params }: Props) {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Combo links — this service across all locations */}
+            <div>
+              <h2 className="text-2xl font-bold text-foreground mb-3">
+                {service.name} Across Greater Manchester
+              </h2>
+              <p className="text-sm text-foreground-muted mb-5">
+                We provide {service.name.toLowerCase()} in every part of Greater Manchester — click your area for local response times, postcodes, and pricing.
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {locationSlugs.map((locSlug) => {
+                  const angle = locationAngles[locSlug as LocationSlug];
+                  return (
+                    <Link
+                      key={locSlug}
+                      href={`/${locSlug}/${service.slug}`}
+                      className="flex items-center gap-2 p-3 rounded-lg bg-surface-2 border border-border hover:border-accent/50 text-sm font-medium text-foreground hover:text-accent transition-all group"
+                    >
+                      <MapPin className="h-3.5 w-3.5 text-accent shrink-0" />
+                      {angle.displayName}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
