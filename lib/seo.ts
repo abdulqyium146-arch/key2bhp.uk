@@ -115,6 +115,7 @@ export function localBusinessSchema() {
     },
     sameAs: [
       "https://key2bhpautolocksmith.com/",
+      "https://www.facebook.com/people/KEY-2-BHP-Auto-Locksmith/61556749298238/",
     ],
   };
 }

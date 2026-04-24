@@ -28,6 +28,8 @@ export const BUSINESS = {
   reviewCount: 100,
   hours: "24/7",
   siteUrl: "https://key2bhpautolocksmith.co.uk",
+  facebook: "https://www.facebook.com/people/KEY-2-BHP-Auto-Locksmith/61556749298238/",
+  googleMapsUrl: "https://maps.app.goo.gl/JxsKb1csRJJXH3ZV7",
 } as const;
 
 export function formatPhone(raw: string) {

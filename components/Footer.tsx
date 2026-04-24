@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, MapPin, Clock, ChevronRight, Globe } from "lucide-react";
+import { Phone, MapPin, Clock, ChevronRight, Globe, Facebook } from "lucide-react";
 import { BUSINESS } from "@/lib/utils";
 import { services } from "@/lib/data/services";
 import { locations } from "@/lib/data/locations";
@@ -59,6 +59,17 @@ export default function Footer() {
                   className="text-foreground hover:text-accent transition-colors font-medium"
                 >
                   key2bhpautolocksmith.com
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Facebook className="h-4 w-4 text-accent shrink-0" />
+                <a
+                  href={BUSINESS.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-accent transition-colors font-medium"
+                >
+                  Facebook
                 </a>
               </div>
             </address>
