@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, MapPin, Clock, ChevronRight, Globe, Facebook } from "lucide-react";
+import { Phone, MapPin, Clock, ChevronRight, Globe, Facebook, Building2 } from "lucide-react";
 import { BUSINESS } from "@/lib/utils";
 import { services } from "@/lib/data/services";
 import { locations } from "@/lib/data/locations";
@@ -25,7 +25,7 @@ export default function Footer() {
               </div>
               <div>
                 <p className="text-sm font-bold leading-none text-foreground">Key 2 BHP</p>
-                <p className="text-xs text-foreground-muted leading-none mt-0.5">Auto Locksmith</p>
+                <p className="text-xs text-foreground-muted leading-none mt-0.5">Auto Locksmith · Ltd</p>
               </div>
             </div>
             <p className="text-sm text-foreground-muted mb-6 leading-relaxed">
@@ -73,6 +73,30 @@ export default function Footer() {
                 </a>
               </div>
             </address>
+
+            {/* Company registration — E-E-A-T trust signal */}
+            <div className="mt-5 pt-5 border-t border-border">
+              <div className="flex items-start gap-2 text-xs text-foreground-muted">
+                <Building2 className="h-3.5 w-3.5 text-accent mt-0.5 shrink-0" />
+                <div className="space-y-1 leading-relaxed">
+                  <p className="font-medium text-foreground">{BUSINESS.legalName}</p>
+                  <p>Registered in England &amp; Wales</p>
+                  <p>
+                    Company No.{" "}
+                    <a
+                      href={BUSINESS.companiesHouseUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent hover:underline"
+                    >
+                      {BUSINESS.companyNumber}
+                    </a>
+                  </p>
+                  <p>Reg. office: {BUSINESS.address.full}</p>
+                  <p>Incorporated: {BUSINESS.incorporatedOn}</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Services */}
@@ -169,7 +193,16 @@ export default function Footer() {
       <div className="border-t border-border">
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-3 py-5">
           <p className="text-xs text-foreground-muted">
-            &copy; {year} {BUSINESS.name}. All rights reserved.
+            &copy; {year} {BUSINESS.legalName}. All rights reserved.
+            {" "}·{" "}
+            <a
+              href={BUSINESS.companiesHouseUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent transition-colors"
+            >
+              Co. No. {BUSINESS.companyNumber}
+            </a>
           </p>
           <div className="flex items-center gap-4 flex-wrap justify-center">
             <Link href="/contact" className="text-xs text-foreground-muted hover:text-accent transition-colors">Contact</Link>

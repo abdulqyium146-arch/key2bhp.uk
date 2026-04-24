@@ -56,6 +56,7 @@ export function localBusinessSchema() {
     "@type": "Locksmith",
     "@id": `${BUSINESS.siteUrl}/#locksmith`,
     name: BUSINESS.name,
+    legalName: BUSINESS.legalName,
     url: BUSINESS.siteUrl,
     telephone: BUSINESS.phone,
     priceRange: "££",
