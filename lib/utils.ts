@@ -27,7 +27,7 @@ export const BUSINESS = {
   rating: 5.0,
   reviewCount: 100,
   hours: "24/7",
-  siteUrl: "https://key2bhp.co.uk",
+  siteUrl: "https://key2bhpautolocksmith.co.uk",
 } as const;
 
 export function formatPhone(raw: string) {
