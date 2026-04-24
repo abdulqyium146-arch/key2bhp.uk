@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, MapPin, Clock, ChevronRight } from "lucide-react";
+import { Phone, MapPin, Clock, ChevronRight, Globe } from "lucide-react";
 import { BUSINESS } from "@/lib/utils";
 import { services } from "@/lib/data/services";
 import { locations } from "@/lib/data/locations";
@@ -46,6 +46,17 @@ export default function Footer() {
               <div className="flex items-center gap-2 text-foreground-muted">
                 <Clock className="h-4 w-4 text-accent shrink-0" />
                 <span>24/7 — 365 days a year</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Globe className="h-4 w-4 text-accent shrink-0" />
+                <a
+                  href="https://key2bhpautolocksmith.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-accent transition-colors font-medium"
+                >
+                  key2bhpautolocksmith.com
+                </a>
               </div>
             </address>
           </div>
