@@ -3,6 +3,7 @@ import { ImageResponse } from "next/og";
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
+// Favicon matches the header K2 amber badge — logo text is unreadable at 32px
 export default function Icon() {
   return new ImageResponse(
     (

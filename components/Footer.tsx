@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, MapPin, Clock, ChevronRight, Globe, Facebook, Building2 } from "lucide-react";
 import { BUSINESS } from "@/lib/utils";
 import { services } from "@/lib/data/services";
@@ -19,14 +20,16 @@ export default function Footer() {
 
           {/* Brand column — spans 2 on lg */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent">
-                <span className="text-lg font-black text-black">K2</span>
-              </div>
-              <div>
-                <p className="text-sm font-bold leading-none text-foreground">Key 2 BHP</p>
-                <p className="text-xs text-foreground-muted leading-none mt-0.5">Auto Locksmith · Ltd</p>
-              </div>
+            <div className="mb-5">
+              <Link href="/" aria-label="Key 2 BHP Auto Locksmith — Home">
+                <Image
+                  src="/logo.webp"
+                  alt="Key 2 BHP Auto Locksmith Manchester logo"
+                  width={182}
+                  height={92}
+                  className="h-14 w-auto rounded-sm"
+                />
+              </Link>
             </div>
             <p className="text-sm text-foreground-muted mb-6 leading-relaxed">
               24/7 mobile auto locksmith serving Manchester and Greater Manchester. Car key replacement, emergency lockout, and key programming across all Greater Manchester postcodes.

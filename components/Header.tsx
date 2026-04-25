@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, Phone, ChevronRight } from "lucide-react";
 import { BUSINESS } from "@/lib/utils";
@@ -31,14 +32,16 @@ export default function Header() {
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group shrink-0" aria-label="Key 2 BHP Home">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent">
-            <span className="text-lg font-black text-black">K2</span>
-          </div>
-          <div className="hidden sm:block">
-            <p className="text-sm font-bold leading-none text-foreground">Key 2 BHP</p>
-            <p className="text-xs text-foreground-muted leading-none mt-0.5">Auto Locksmith</p>
-          </div>
+        <Link href="/" className="shrink-0 flex items-center" aria-label="Key 2 BHP Auto Locksmith — Home">
+          <Image
+            src="/logo.webp"
+            alt="Key 2 BHP Auto Locksmith Manchester"
+            width={182}
+            height={92}
+            priority
+            fetchPriority="high"
+            className="h-10 w-auto sm:h-11 rounded-sm"
+          />
         </Link>
 
         {/* Desktop Nav */}

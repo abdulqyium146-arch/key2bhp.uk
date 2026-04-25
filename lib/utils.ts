@@ -30,6 +30,7 @@ export const BUSINESS = {
   siteUrl: "https://key2bhpautolocksmith.co.uk",
   facebook: "https://www.facebook.com/people/KEY-2-BHP-Auto-Locksmith/61556749298238/",
   googleMapsUrl: "https://maps.app.goo.gl/JxsKb1csRJJXH3ZV7",
+  logoUrl: "/logo.webp",
   legalName: "Key 2 BHP Auto Locksmith Ltd",
   companyNumber: "16104498",
   companiesHouseUrl: "https://find-and-update.company-information.service.gov.uk/company/16104498",

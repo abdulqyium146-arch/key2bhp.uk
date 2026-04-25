@@ -31,8 +31,16 @@ export const metadata: Metadata = {
     "key programming Manchester",
     "24 hour locksmith Manchester",
   ],
-  authors: [{ name: BUSINESS.name }],
-  creator: BUSINESS.name,
+  authors: [{ name: BUSINESS.legalName }],
+  creator: BUSINESS.legalName,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon", type: "image/png", sizes: "32x32" },
+    ],
+    apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],
+    shortcut: "/favicon.ico",
+  },
   openGraph: {
     type: "website",
     locale: "en_GB",
