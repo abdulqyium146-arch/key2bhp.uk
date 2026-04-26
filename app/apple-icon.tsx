@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-// Apple touch icon — amber K2 badge, readable and brand-consistent on iOS
+// Mirrors real logo style at Apple home screen size
 export default function AppleIcon() {
   return new ImageResponse(
     (
@@ -11,23 +11,38 @@ export default function AppleIcon() {
         style={{
           width: 180,
           height: 180,
-          borderRadius: 40,
-          background: "#F59E0B",
+          borderRadius: 24,
+          background: "#545454",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          gap: 4,
         }}
       >
         <span
           style={{
-            color: "#000000",
-            fontSize: 82,
+            color: "#ffffff",
+            fontSize: 58,
             fontWeight: 900,
-            letterSpacing: "-3px",
+            letterSpacing: "-2px",
             fontFamily: "system-ui, sans-serif",
+            lineHeight: 1,
           }}
         >
-          K2
+          K2BHP
+        </span>
+        <span
+          style={{
+            color: "#cccccc",
+            fontSize: 22,
+            fontWeight: 600,
+            letterSpacing: "3px",
+            fontFamily: "system-ui, sans-serif",
+            lineHeight: 1,
+          }}
+        >
+          LOCKSMITH
         </span>
       </div>
     ),

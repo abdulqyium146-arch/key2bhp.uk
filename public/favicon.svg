@@ -1,4 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <rect width="32" height="32" rx="7" fill="#F59E0B"/>
-  <text x="50%" y="21.5" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif" font-size="15" font-weight="900" fill="#000000" letter-spacing="-1">K2</text>
+  <!-- Background matches logo's #545454 grey -->
+  <rect width="32" height="32" rx="4" fill="#545454"/>
+  <!-- Simplified car silhouette -->
+  <path d="M5 18 C5 18 7 13 10 12 L13 11 L19 11 L22 12 C25 13 27 18 27 18 L27 21 C27 21.5 26.5 22 26 22 L24 22 L24 20.5 C24 19.7 23.3 19 22.5 19 C21.7 19 21 19.7 21 20.5 L21 22 L11 22 L11 20.5 C11 19.7 10.3 19 9.5 19 C8.7 19 8 19.7 8 20.5 L8 22 L6 22 C5.5 22 5 21.5 5 21 Z" fill="#d0d0d0"/>
+  <!-- Windscreen -->
+  <path d="M12.5 12.5 L11 17.5 L21 17.5 L19.5 12.5 Z" fill="#545454" opacity="0.6"/>
+  <!-- K2 text at bottom -->
+  <text x="16" y="30" text-anchor="middle" font-family="-apple-system,Arial,sans-serif" font-size="6" font-weight="900" fill="#ffffff" letter-spacing="0.5">K2BHP</text>
 </svg>
